@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">AndroidUIandLogin-SamanthaParker</string>
+    <string name="psu_image">PSU</string>
+    <string name="editText_login_email_or_id">Email or ID </string>
+    <string name="editText_login_password">Password</string>
+    <string name="button_login">Login</string>
+    <string name="textView_login_or_signup">OR</string>
+    <string name="button_signup">Sign Up</string>
+    <string name="app_headerLabel">Login/Sign Up</string>
+    <string name="editText_firstname">First Name</string>
+    <string name="editText_lastname">Last Name</string>
+    <string name="editText_username">Username</string>
+    <string name="editText_password">Password</string>
+    <string name="editText_emailaddress">Email Address</string>
+    <string name="editText_birthdate">Birthdate</string>
+    <string name="editText_mobilephone">Mobile Phone</string>
+    <string name="button_signup_confirm">Confirm</string>
+    <string name="textView_welcome">Welcome,</string>
+    <string name="textView_firstname">First Name:</string>
+    <string name="textView_lastname">Last Name:</string>
+    <string name="textView_username">Username:</string>
+    <string name="textView_emailaddress">Email Address:</string>
+    <string name="textView_birthdate">Birth Date:</string>
+    <string name="textView_mobilephone">Mobile Phone:</string>
+    <string name="button_view_all_users">View All Users</string>
+    <string name="toast_username_not_found">Username not found.</string>
+    <string name="toast_incorrect_password">Password is incorrect.</string>
+    <string name="textView_AllUsers_FirstName">First Name:</string>
+    <string name="textView_AllUsers_LastName">Last Name:</string>
+    <string name="textView_AllUsers_EmailAddress">Email Address:</string>
+</resources>
