@@ -25,6 +25,9 @@
     <string name="button_view_all_users">View All Users</string>
     <string name="toast_username_not_found">Username not found.</string>
     <string name="toast_incorrect_password">Password is incorrect.</string>
+    <string name="toast_authentication_failure">Username and/or password is incorrect.</string>
+    <string name="toast_signup_success">Successfully created user.</string>
+    <string name="toast_signup_error">Error creating user.</string>
     <string name="textView_AllUsers_FirstName">First Name:</string>
     <string name="textView_AllUsers_LastName">Last Name:</string>
     <string name="textView_AllUsers_EmailAddress">Email Address:</string>

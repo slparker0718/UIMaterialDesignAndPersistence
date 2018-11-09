@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateInput();
+                authenticateFirebaseUser();
             }
         });
     }
@@ -65,36 +65,46 @@ public class LoginActivity extends AppCompatActivity {
         UserProfile userProfile = null;
         if (userProfiles != null && !userProfiles.isEmpty()) {
 
-            String user = editText_login_email_or_id.getText().toString();
-            String password = editText_login_password.getText().toString();
+            String emailAddress = editText_login_email_or_id.getText().toString();
 
             for (UserProfile up : userProfiles) {
-                if (up.getUsername().equals(user)) {
+                if (up.getEmailAddress().equals(emailAddress)) {
                     userProfile = up;
                     break;
                 }
             }
-            if (userProfile == null) {
-                Toast.makeText(getApplicationContext(), R.string.toast_username_not_found, Toast.LENGTH_LONG).show();
-            } else {
-                if (!userProfile.getPassword().equals(password)) {
-                    Toast.makeText(getApplicationContext(), R.string.toast_incorrect_password, Toast.LENGTH_LONG).show();
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, LoginSuccessActivity.class);
-                    intent.putExtra("FIRSTNAME", userProfile.getFirstname());
-                    intent.putExtra( "LASTNAME", userProfile.getLastName());
-                    intent.putExtra("USERNAME", userProfile.getUsername());
-                    intent.putExtra("EMAILADDRESS", userProfile.getEmailAddress());
-                    intent.putExtra("BIRTHDATE", userProfile.getBirthdate());
-                    intent.putExtra("MOBILEPHONE", userProfile.getMobilePhone());
-                    startActivity(intent);
-                }
-            }
+
+            Intent intent = new Intent(LoginActivity.this, LoginSuccessActivity.class);
+            intent.putExtra("FIRSTNAME", userProfile.getFirstname());
+            intent.putExtra( "LASTNAME", userProfile.getLastName());
+            intent.putExtra("USERNAME", userProfile.getUsername());
+            intent.putExtra("EMAILADDRESS", userProfile.getEmailAddress());
+            intent.putExtra("BIRTHDATE", userProfile.getBirthdate());
+            intent.putExtra("MOBILEPHONE", userProfile.getMobilePhone());
+            startActivity(intent);
         }
     }
 
-    private void validateInput() {
-        mAuth.createUserWithEmailAndPassword(editText_login_email_or_id.getText().toString(), editText_login_password.getText().toString())
+    private boolean hasLocalCredentials()
+    {
+        if (userProfiles != null && !userProfiles.isEmpty()) {
+
+            String emailAddress = editText_login_email_or_id.getText().toString();
+            String password = editText_login_password.getText().toString();
+
+            for (UserProfile up : userProfiles) {
+                if (up.getEmailAddress().equals(emailAddress) && up.getPassword().equals(password))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void authenticateFirebaseUser() {
+        mAuth.signInWithEmailAndPassword(editText_login_email_or_id.getText().toString(), editText_login_password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -103,7 +113,14 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
-
+                            if (hasLocalCredentials())
+                            {
+                                login();
+                            }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(), getString(R.string.toast_authentication_failure), Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 });

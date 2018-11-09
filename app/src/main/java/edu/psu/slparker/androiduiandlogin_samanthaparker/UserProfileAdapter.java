@@ -1,43 +1,63 @@
+
 package edu.psu.slparker.androiduiandlogin_samanthaparker;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class UserProfileAdapter extends ArrayAdapter {
+public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.MyViewHolder> {
 
-    public UserProfileAdapter(Context context, int resource, List objects) {
-        super(context, resource, objects);
+    private ArrayList<UserProfile> dataSet;
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView textView_firstName;
+        TextView textView_lastName;
+        TextView textView_emailAddress;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            this.textView_firstName = (TextView) itemView.findViewById(R.id.textView_AllUsers_FirstName);
+            this.textView_lastName = (TextView) itemView.findViewById(R.id.textView_AllUsers_LastName);
+            this.textView_emailAddress = (TextView) itemView.findViewById(R.id.textView_AllUsers_EmailAddress);
+        }
     }
 
-    @NonNull
+    public UserProfileAdapter(ArrayList<UserProfile> data) {
+        this.dataSet = data;
+    }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                           int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.all_users_list_view, parent, false);
 
-        View listItemView = convertView;
+        //view.setOnClickListener(MainActivity.myOnClickListener);
 
-        if(listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.all_users_list_view, parent, false);
-        }
+        MyViewHolder myViewHolder = new MyViewHolder(view);
+        return myViewHolder;
+    }
 
-        UserProfile userProfile = (UserProfile) getItem(position);
+    @Override
+    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
-        TextView textViewFirstName = (TextView) listItemView.findViewById(R.id.textView_AllUsers_FirstName);
-        textViewFirstName.setText(userProfile.getFirstname());
+        TextView textView_firstname = holder.textView_firstName;
+        TextView textView_lastname = holder.textView_lastName;
+        TextView textView_emailaddress = holder.textView_emailAddress;
 
-        TextView textViewLastName = (TextView) listItemView.findViewById(R.id.textView_AllUsers_LastName);
-        textViewLastName.setText(userProfile.getLastName());
+        textView_firstname.setText(dataSet.get(listPosition).getFirstname());
+        textView_lastname.setText(dataSet.get(listPosition).getLastName());
+        textView_emailaddress.setText(dataSet.get(listPosition).getEmailAddress());
+    }
 
-        TextView textViewEmailAddress = (TextView) listItemView.findViewById(R.id.textView_AllUsers_EmailAddress);
-        textViewEmailAddress.setText(userProfile.getEmailAddress());
-
-        return listItemView;
+    @Override
+    public int getItemCount() {
+        return dataSet.size();
     }
 }
