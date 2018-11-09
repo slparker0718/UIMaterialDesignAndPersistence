@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "858239336523",
+    "firebase_url": "https://androiduiandlogin-samanthap.firebaseio.com",
+    "project_id": "androiduiandlogin-samanthap",
+    "storage_bucket": "androiduiandlogin-samanthap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858239336523:android:c7eb8a94dfac4562",
+        "android_client_info": {
+          "package_name": "edu.psu.slparker.androiduiandlogin_samanthaparker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858239336523-usktue8brfiegif9ns9mkusb4jp36t99.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.psu.slparker.androiduiandlogin_samanthaparker",
+            "certificate_hash": "ea6d92c19f551899fc421fb8a82a1f21cee4cdfb"
+          }
+        },
+        {
+          "client_id": "858239336523-k01a4o5dm0jc6kbbfnvvd519543ai9hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJDpAY-5fsiPS4kahdIS6uwyZC16synRg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858239336523-k01a4o5dm0jc6kbbfnvvd519543ai9hu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

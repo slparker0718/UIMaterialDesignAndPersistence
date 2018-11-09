@@ -20,8 +20,6 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // In case the database is a cache for online data, you can discard the existing data
-        // once the app is gathering information from an external data source.
         db.execSQL(UserProfileTable.delete());
         onCreate(db);
     }
@@ -30,5 +28,4 @@ public class DatabaseAccess extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-
 }

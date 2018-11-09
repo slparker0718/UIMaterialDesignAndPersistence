@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginSuccessActivity" />
-        <activity android:name=".ViewAllUsersActivity"></activity>
+        <activity android:name=".SignUpActivity" android:label="Sign Up"/>
+        <activity android:name=".LoginSuccessActivity" android:label="Welcome"/>
+        <activity android:name=".ViewAllUsersActivity" android:label="All Users"></activity>
     </application>
 
 </manifest>

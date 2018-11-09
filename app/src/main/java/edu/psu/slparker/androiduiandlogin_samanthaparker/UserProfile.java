@@ -2,7 +2,7 @@ package edu.psu.slparker.androiduiandlogin_samanthaparker;
 
 public class UserProfile {
 
-    private long ID;
+    private Long Id;
     private String firstname;
     private String lastname;
     private String username;
@@ -22,6 +22,18 @@ public class UserProfile {
         this.password = password;
         this.birthdate = birthDate;
         this.mobilePhone = mobilePhone;
+    }
+
+    public UserProfile(String firstName, String lastName, String userName, String password, String emailAddress, String birthDate, String mobilePhone, Long id)
+    {
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.username = userName;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.birthdate = birthDate;
+        this.mobilePhone = mobilePhone;
+        this.Id = id;
     }
 
     public String getFirstname() {return firstname; }
@@ -51,4 +63,8 @@ public class UserProfile {
     public String getMobilePhone() {return mobilePhone;}
 
     public void setMobilePhone(String mobilePhone) {this.mobilePhone = mobilePhone;}
+
+    public Long getId() {return Id;}
+
+    public void setId(Long Id) {this.Id = Id; }
 }

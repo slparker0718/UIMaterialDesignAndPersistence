@@ -1,12 +1,19 @@
 package edu.psu.slparker.androiduiandlogin_samanthaparker;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -18,11 +25,13 @@ public class LoginActivity extends AppCompatActivity {
     private Button button_signup;
     private ArrayList<UserProfile> userProfiles;
     private PersistenceUserProfile persistenceUserProfile;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
 
         editText_login_email_or_id = (EditText) findViewById(R.id.editText_login_email_or_id);
         editText_login_password = (EditText) findViewById(R.id.editText_login_password);
@@ -51,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         userProfiles = persistenceUserProfile.getDataFromDB();
     }
 
-    private void validateInput() {
-
+    private void login()
+    {
         UserProfile userProfile = null;
         if (userProfiles != null && !userProfiles.isEmpty()) {
 
@@ -82,5 +91,21 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void validateInput() {
+        mAuth.createUserWithEmailAndPassword(editText_login_email_or_id.getText().toString(), editText_login_password.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            login();
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                });
     }
 }
